@@ -30,7 +30,13 @@ public class DeleteManager extends javax.swing.JPanel {
          for (int i = 0; i < model.getRowCount(); i++) {
             model.removeRow(i);
         }
-         
+         model = new DefaultTableModel(new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Full Name", "User Name", "Phone NUM", "Email"
+            });
+         aJTable.setModel(model);
          
          
 

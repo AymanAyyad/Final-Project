@@ -170,7 +170,10 @@ public class SearchPanelForProduct extends javax.swing.JPanel {
         HashMap<String, String> Data = new HashMap<>();
         Data.put((String) jComboBox1.getSelectedItem(), jTextField1.getText());
         try {
-            Product aProduct = DataBase.DBFacade.getProductsDBOperation().getProduct(Data).get(0);
+            Product aProduct ;
+           List< Product > aProducts = DataBase.DBFacade.getProductsDBOperation().getProduct(Data);
+            if( aProducts.size() != 0)
+            aProduct =  aProducts.get(0);
             fillTable(Data);
         } catch (Exception ex) {
             Logger.getLogger(SearchPanelForProduct.class.getName()).log(Level.SEVERE, null, ex);

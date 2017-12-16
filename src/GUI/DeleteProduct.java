@@ -37,6 +37,13 @@ public class DeleteProduct extends javax.swing.JPanel {
          for (int i = 0; i < model.getRowCount(); i++) {
             model.removeRow(i);
         }
+         model = new DefaultTableModel(new Object [][] {
+
+            },
+            new String [] {
+               "ID", "Name", "Quantity", "price of carton", "Prodate", "Expdate", "Flavor", "Type"
+            });
+         aJTable.setModel(model);
          List <Products.Product> aProduct =  DataBase.DBFacade.getProductsDBOperation().getProduct(null);
          for(Product product :aProduct){
          Object[] row = { product.getId(),  product.getName(),product.getQuantity(), product.getPriceOfcarton()

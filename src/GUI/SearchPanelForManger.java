@@ -30,8 +30,15 @@ public class SearchPanelForManger extends javax.swing.JPanel {
           model =   (DefaultTableModel) aJTable.getModel();
          for (int i = 0; i < model.getRowCount(); i++) {
             model.removeRow(i);
+           
         }
-         
+         model = new DefaultTableModel(new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Full Name", "User Name", "Phone NUM", "Email"
+            });
+         aJTable.setModel(model);
          
          
 //         jTable1.addRowSelectionInterval(WIDTH, WIDTH);
@@ -41,7 +48,7 @@ public class SearchPanelForManger extends javax.swing.JPanel {
          ,manager.getEmail()};
           model.addRow(row);
          }
-          
+        
     }
     public SearchPanelForManger() {
         initComponents();

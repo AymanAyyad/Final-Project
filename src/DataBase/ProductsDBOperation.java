@@ -210,7 +210,7 @@ public class ProductsDBOperation {
                 preparedStatement.setString(6, aCake.getFlavor());
                 preparedStatement.setString(7, "Cake");
                 preparedStatement.setFloat(8, aCake.getWhight());
-                preparedStatement.setBoolean(9, aDrink.isDiet());
+               
 
                 preparedStatement.executeUpdate();
             }

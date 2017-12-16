@@ -37,9 +37,14 @@ public class UpdateManager extends javax.swing.JPanel {
          for (int i = 0; i < model.getRowCount(); i++) {
             model.removeRow(i);
         }
+         model = new DefaultTableModel(new Object [][] {
+
+            },
+            new String [] {
+                 "ID", "User Name", "Phone NUM"
+            });
          
-         
-         
+         aJTable.setModel(model);
 //         jTable1.addRowSelectionInterval(WIDTH, WIDTH);
         List <Manager> aManager =  DataBase.DBFacade.getMangersDBOpration().getManager(null);
          for(Manager manager :aManager){
@@ -205,8 +210,8 @@ public class UpdateManager extends javax.swing.JPanel {
                             .addComponent(jLabel6)
                             .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

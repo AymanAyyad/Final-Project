@@ -40,6 +40,14 @@ public class UpdataProduct extends javax.swing.JPanel {
          for (int i = 0; i < model.getRowCount()-1; i++) {
             model.removeRow(i);
         }
+         
+         model = new DefaultTableModel(new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Name", "Type"
+            });
+         aJTable.setModel(model);
          List <Products.Product> aProduct =  DataBase.DBFacade.getProductsDBOperation().getProduct(null);
          for(Product product :aProduct){
          Object[] row = { product.getId(),  product.getName(),(product.equals("Drink"))? "Drink" : "Cake" };
