@@ -22,14 +22,7 @@ public class FactoyManagmentSys {
     public static void main(String[] args) {
         // TODO code application logic here
         new LoginScreen().setVisible(true);
-        try{
-            HashMap<String,String> aa = new HashMap<String,String>();
-            aa.put("ID", "aaaaaaaaaaaaa") ;
-            aa.put("Name", "Name");
-       MangersDBOpration.getIstance().getManager(aa);
-        }catch(Exception e){
-            
-        }
+        
         
     }
     

@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -126,18 +127,32 @@ public class DeleteManager extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         int row =  jTable1.getSelectedRow();
-        
-       int id =  (int) model.getValueAt(row, 0);
-        System.out.println();
+        if(jTable1.getRowCount() > 1){
+        int id = 0;
+        System.out.println("getSelectedRow() ==>> "+row);
+         if(row >= 0){
+             
+            System.out.println("aaa");
         try {
-            
+           id =(int) model.getValueAt(row, 0);
           DataBase.DBFacade.getMangersDBOpration().DeleteManager(id);
           
           fillTable();
         } catch (Exception ex) {
             Logger.getLogger(UpdateManager.class.getName()).log(Level.SEVERE, null, ex);
         }
-      
+        
+            }else {
+             
+         System.out.println(" if(row < 0)");
+        
+        
+        
+        
+                JOptionPane.showMessageDialog(this, "Select The Manager who want to delete it ...");
+         }
+        }else
+            JOptionPane.showMessageDialog(this, "You can not remove the final account");
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

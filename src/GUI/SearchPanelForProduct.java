@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
@@ -166,7 +167,9 @@ public class SearchPanelForProduct extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-
+        if (jTextField1.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Enter The "+(String) jComboBox1.getSelectedItem());
+        }else {
         HashMap<String, String> Data = new HashMap<>();
         Data.put((String) jComboBox1.getSelectedItem(), jTextField1.getText());
         try {
@@ -182,6 +185,7 @@ public class SearchPanelForProduct extends javax.swing.JPanel {
 
         } catch (Exception ex) {
             Logger.getLogger(SearchPanelForProduct.class.getName()).log(Level.SEVERE, null, ex);
+        }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

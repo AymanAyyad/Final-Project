@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -158,6 +159,11 @@ public class SearchPanelForManger extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        
+        if ( jTextField1.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Enter The "+""+jComboBox1.getSelectedItem().toString());
+        }else {
+        
         HashMap<String,String> Data = new  HashMap<>();
         System.out.println(""+jComboBox1.getSelectedItem().toString());
         Data.put(jComboBox1.getSelectedItem().toString(), jTextField1.getText());
@@ -166,7 +172,7 @@ public class SearchPanelForManger extends javax.swing.JPanel {
         } catch (Exception ex) {
             Logger.getLogger(SearchPanelForManger.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

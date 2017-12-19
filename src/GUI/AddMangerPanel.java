@@ -22,7 +22,47 @@ public class AddMangerPanel extends javax.swing.JPanel {
     public AddMangerPanel() {
         initComponents();
     }
-
+        
+   private boolean validation(){
+       boolean isTrue = false;
+       
+       if(jTextField1.getText().equals(""))
+       {
+           JOptionPane.showMessageDialog(this, "Enter The Name ");
+           return isTrue;
+       }else
+           if(jTextField2.getText().equals(""))
+       {
+           JOptionPane.showMessageDialog(this, "Enter The Email ");
+           return isTrue;
+       }else
+               if(jTextField3.getText().equals(""))
+       {
+           JOptionPane.showMessageDialog(this, "Enter The UserName ");
+           return isTrue;
+       }
+               else 
+                   if(jPasswordField1.getText().equals(""))
+       {
+           JOptionPane.showMessageDialog(this, "Enter The Password ");
+           return isTrue;
+       }    else
+                       if(jTextField4.getText().equals(""))
+       {
+           JOptionPane.showMessageDialog(this, "Enter The Phone Number ");
+           return isTrue;
+       }
+        else
+                       if(jTextField6.getText().equals(""))
+       {
+           JOptionPane.showMessageDialog(this, "Enter The Date OF Barth ");
+           return isTrue;
+       }
+       
+        return true;
+       
+   }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -146,6 +186,7 @@ public class AddMangerPanel extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        if(validation()){
         String Name = jTextField1.getText();
         String Password = jPasswordField1.getText();
         String Email = jTextField2.getText();
@@ -174,7 +215,7 @@ public class AddMangerPanel extends javax.swing.JPanel {
         } catch (Exception ex) {
             Logger.getLogger(AddMangerPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

@@ -33,6 +33,77 @@ public class AddProductPanel extends javax.swing.JPanel {
         }
     }
 
+    private boolean validation() {
+        boolean isTrue = false;
+        System.out.println(((String) jComboBox1.getSelectedItem()).equalsIgnoreCase("Cake"));
+        if (jTextField1.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Enter The Name ");
+            return isTrue;
+        }
+        if (jTextField2.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Enter The quantity ");
+            return isTrue;
+        }
+        if (jTextField3.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Enter The priceOfCarton ");
+            return isTrue;
+        }
+        if (jTextField4.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Enter The ProDare");
+            return isTrue;
+        }
+        if (jTextField5.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Enter The ExpDate ");
+            return isTrue;
+        }
+        if (jTextField6.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Enter The  Flavor ");
+            return isTrue;
+        }
+        if (((String) jComboBox1.getSelectedItem()).equals("Drink") && jTextField7.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Enter The madeFrom ");
+            return isTrue;
+        }
+        
+        if (((String) jComboBox1.getSelectedItem()).equalsIgnoreCase("Cake") && jTextField8.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Enter The Date OF whight ");
+            System.out.println("jComboBox1.getSelectedItem().equals(\"Cake\") && jTextField8.getText().equals(\"\")");
+            return isTrue;
+        }
+        
+        if (((String) jComboBox1.getSelectedItem()).equalsIgnoreCase("Cake")&& !jTextField8.getText().equals("")) {
+            System.out.println("Whigth parsing validation");
+            try {
+                Float.parseFloat(jTextField8.getText());
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "The Whigth Data unValied !!!");
+                return isTrue;
+            }
+
+        }
+        if (!jTextField2.getText().equals("")) {
+            try {
+                Integer.parseInt(jTextField2.getText());
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "The quantity Data unValied !!!");
+                return isTrue;
+            }
+
+        }
+        if (!jTextField3.getText().equals("")) {
+
+            try {
+                Integer.parseInt(jTextField3.getText());
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "The priceOfCarton Data unValied !!!");
+                return isTrue;
+            }
+        }
+
+        return true;
+
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -219,56 +290,60 @@ public class AddProductPanel extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        Cake aCake = null;
-        Drink aDrink = null;
-        String Name = jTextField1.getText();
-        String Quantity = jTextField2.getText();
-        String PricOfCarton = jTextField3.getText();
-        String ProDate = jTextField4.getText();
-        String ExpDate = jTextField5.getText();
-        String Flavor = jTextField6.getText();
-        String madeForm = jTextField7.getText();
-        String whight = jTextField8.getText();
-        String type = (String) jComboBox1.getSelectedItem();
-        String Diet = (String) jComboBox2.getSelectedItem();
+        if (validation()) {
+            Cake aCake = null;
+            Drink aDrink = null;
+            String Name = jTextField1.getText();
+            String Quantity = jTextField2.getText();
+            String PricOfCarton = jTextField3.getText();
+            String ProDate = jTextField4.getText();
+            String ExpDate = jTextField5.getText();
+            String Flavor = jTextField6.getText();
+            String madeForm = jTextField7.getText();
+            String whight = jTextField8.getText();
+            String type = (String) jComboBox1.getSelectedItem();
+            String Diet = (String) jComboBox2.getSelectedItem();
 
-        if (type.equals("Drink")) {
+            if (type.equals("Drink")) {
 
-            aDrink = (Drink) Products.ProductFactory.getProduct(type);
-            aDrink.setName(Name);
-            aDrink.setPriceOfcarton(Integer.parseInt(PricOfCarton));
-            aDrink.setQuantity(Integer.parseInt(Quantity));
-            aDrink.setProdate(ProDate);
-            aDrink.setExpdate(ExpDate);
-            aDrink.setFlavor(Flavor);
-            aDrink.setMadeFrom(madeForm);
+                aDrink = (Drink) Products.ProductFactory.getProduct(type);
+                aDrink.setName(Name);
+                aDrink.setPriceOfcarton(Integer.parseInt(PricOfCarton));
+                aDrink.setQuantity(Integer.parseInt(Quantity));
+                aDrink.setProdate(ProDate);
+                aDrink.setExpdate(ExpDate);
+                aDrink.setFlavor(Flavor);
+                aDrink.setMadeFrom(madeForm);
 
-            aDrink.setDiet((Diet.equals("No") ? false : true));
+                aDrink.setDiet((Diet.equals("No") ? false : true));
 
-        } else if (type.equals("Cake")) {
-            aCake = (Cake) Products.ProductFactory.getProduct(type);
-            aCake.setName(Name);
-            aCake.setPriceOfcarton(Integer.parseInt(PricOfCarton));
-            aCake.setQuantity(Integer.parseInt(Quantity));
-            aCake.setProdate(ProDate);
-            aCake.setExpdate(ExpDate);
-            aCake.setFlavor(Flavor);
-            aCake.setWhight(Float.parseFloat(whight));
-        }
-        try {
-            DataBase.ProductsDBOperation.getIstance().insertProduct(aDrink, aCake, type);
-            JOptionPane.showMessageDialog(this, "Done !");
-            jTextField1.setText("");
-           jTextField2.setText("");
-           jTextField3.setText("");
-           jTextField4.setText("");
-           jTextField5.setText("");
-           jTextField6.setText("");
-           jTextField7.setText("");
-           jTextField8.setText("");
-          
-        } catch (Exception ex) {
-            Logger.getLogger(AddProductPanel.class.getName()).log(Level.SEVERE, null, ex);
+            } else if (type.equals("Cake")) {
+                aCake = (Cake) Products.ProductFactory.getProduct(type);
+                aCake.setName(Name);
+                aCake.setPriceOfcarton(Integer.parseInt(PricOfCarton));
+                aCake.setQuantity(Integer.parseInt(Quantity));
+                aCake.setProdate(ProDate);
+                aCake.setExpdate(ExpDate);
+                aCake.setFlavor(Flavor);
+                aCake.setWhight(Float.parseFloat(whight));
+            }
+            try {
+                DataBase.ProductsDBOperation.getIstance().insertProduct(aDrink, aCake, type);
+                JOptionPane.showMessageDialog(this, "Done !");
+                jTextField1.setText("");
+                jTextField2.setText("");
+                jTextField3.setText("");
+                jTextField4.setText("");
+                jTextField5.setText("");
+                jTextField6.setText("");
+                jTextField7.setText("");
+                jTextField8.setText("");
+
+            } catch (Exception ex) {
+                Logger.getLogger(AddProductPanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            System.out.println("validation is False");
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed
