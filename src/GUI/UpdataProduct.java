@@ -26,6 +26,7 @@ public class UpdataProduct extends javax.swing.JPanel {
      * Creates new form UpdataProduct
      */
     int id ;
+    boolean  isSelected = false ;
     public UpdataProduct() throws Exception {
         initComponents();
         fillTable();
@@ -241,6 +242,8 @@ public class UpdataProduct extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        
+        if(isSelected){
          Drink aDrink = null;
          Cake aCake = null;
         if(type .equalsIgnoreCase("Drink")){
@@ -290,13 +293,18 @@ public class UpdataProduct extends javax.swing.JPanel {
         } catch (Exception ex) {
             Logger.getLogger(UpdataProduct.class.getName()).log(Level.SEVERE, null, ex);
         }
+        }else{
+            JOptionPane.showMessageDialog(this, "no Selected product ot update it");
+        }
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         int row =  jTable1.getSelectedRow();
-        
+        if(row >= 0){
+            isSelected = true ;
+            System.out.println("row >= 0");
         id =  (int) model.getValueAt(row, 0);
         HashMap <String ,String> Data = new HashMap<>() ;
         Data.put("ID", id+"");
@@ -340,7 +348,10 @@ public class UpdataProduct extends javax.swing.JPanel {
         }
         
        
-        
+        }
+        else {
+            JOptionPane.showMessageDialog(this, "Select the product");
+        }
        
     }//GEN-LAST:event_jButton3ActionPerformed
 

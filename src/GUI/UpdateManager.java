@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
@@ -30,6 +31,7 @@ public class UpdateManager extends javax.swing.JPanel {
      */
     DefaultTableModel model = null ;
     int id ;
+    boolean isSelected = false ;
     public void fillTable() throws Exception{
         JTable aJTable = this.jTable1;
         
@@ -52,7 +54,12 @@ public class UpdateManager extends javax.swing.JPanel {
          ,manager.getEmail()};
           model.addRow(row);
          }
-          
+           jTextField1.setText("");
+          jTextField2.setText("");
+          jTextField3.setText("");
+          jPasswordField1.setText("");
+          jTextField4.setText("");
+          jTextField6.setText("");
     }
     public UpdateManager() throws Exception {
         initComponents();
@@ -221,6 +228,8 @@ public class UpdateManager extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        System.out.println("isSelected : "+isSelected);
+        if(isSelected){
         Manager aManager =new Manager.Bielder()
                 .setId(id)
                 .setName(jTextField1.getText())
@@ -236,19 +245,25 @@ public class UpdateManager extends javax.swing.JPanel {
         try {
             DataBase.DBFacade.getMangersDBOpration().updateManager(aManager);
             fillTable();
+            JOptionPane.showMessageDialog(this, "Done !");
         } catch (Exception ex) {
             Logger.getLogger(UpdateManager.class.getName()).log(Level.SEVERE, null, ex);
         }
          
-
+        }
+        else {
+            JOptionPane.showMessageDialog(this, "NO Data To Update It");
+        }
        
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+       
       int row =  jTable1.getSelectedRow();
-        
+        if(row >= 0){
+            isSelected = true ;
         id =  (int) model.getValueAt(row, 0);
         System.out.println();
         try {
@@ -267,7 +282,10 @@ public class UpdateManager extends javax.swing.JPanel {
         } catch (Exception ex) {
             Logger.getLogger(UpdateManager.class.getName()).log(Level.SEVERE, null, ex);
         }
-      
+        }else
+            JOptionPane.showMessageDialog(this, "Select the manager you want to update it...");
+        
+        
     }//GEN-LAST:event_jButton3ActionPerformed
 
 

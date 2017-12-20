@@ -11,6 +11,7 @@ import com.mysql.fabric.xmlrpc.base.Data;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -120,7 +121,7 @@ public class DeleteProduct extends javax.swing.JPanel {
         // TODO add your handling code here:
         
         int row =  jTable1.getSelectedRow();
-        
+        if(row >= 0){
        int id =  (int) model.getValueAt(row, 0);
         System.out.println();
         try {
@@ -132,7 +133,9 @@ public class DeleteProduct extends javax.swing.JPanel {
             System.out.println("Delete Error");
             Logger.getLogger(UpdateManager.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        }else{
+            JOptionPane.showMessageDialog(this, "Select the product which want to delete");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
